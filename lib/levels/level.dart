@@ -8,7 +8,7 @@ class Level extends World {
   @override
   FutureOr<void> onLoad() async{
 
-    level = await TiledComponent.load(fileName, destTileSize)
+    level = await TiledComponent.loa
     return super.onLoad();
   }
 }
