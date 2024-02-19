@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Level-01.tmx",
+    "activeFile": "Level-03.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,13 +11,46 @@
     "fileStates": {
         "Level-01.tmx": {
             "expandedObjectLayers": [
+                3,
                 2
             ],
-            "scale": 2.159765625,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 379.6708265509134,
-                "y": 181.26966901790558
+                "x": 365.33333333333326,
+                "y": 196.66666666666669
+            }
+        },
+        "Level-02.tmx": {
+            "scale": 0.75,
+            "selectedLayer": -1,
+            "viewCenter": {
+                "x": 450.6666666666666,
+                "y": 20
+            }
+        },
+        "Level-03.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 0.33,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 163.63636363636374,
+                "y": 1272.727272727273
+            }
+        },
+        "Level-04.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.473984375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 385.35008215402564,
+                "y": 218.4555043197117
             }
         },
         "Pixel Adventure.tsx": {
@@ -25,18 +58,22 @@
         }
     },
     "last.imagePath": "C:/Users/Spellthorn/Desktop/pixel_adventure/assets/images/Terrain",
-    "map.height": 23,
+    "map.height": 30,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
-        "Level-01.tmx"
+        "Level-01.tmx",
+        "Level-02.tmx",
+        "Level-03.tmx"
     ],
     "project": "Pixel Adventure.tiled-project",
-    "property.type": "float",
+    "property.type": "string",
     "recentFiles": [
-        "Level-01.tmx"
+        "Level-01.tmx",
+        "Level-02.tmx",
+        "Level-03.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

@@ -1,40 +1,62 @@
-
 import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/src/services/keyboard_key.g.dart';
 import 'package:flutter/widgets.dart';
+import 'package:some_game/components/checkpoint.dart';
 import 'package:some_game/components/collision_block.dart';
 import 'package:some_game/components/custom_hitbox.dart';
 import 'package:some_game/components/fruit.dart';
+import 'package:some_game/components/goal.dart';
+import 'package:some_game/components/number.dart';
+import 'package:some_game/components/saw.dart';
 import 'package:some_game/components/some_game.dart';
 import 'package:some_game/components/utils.dart';
 
-enum PlayerState { idle, running, jumping, falling }
+enum PlayerState { idle, running, jumping, falling, hit }
 
 class Player extends SpriteAnimationGroupComponent
     with HasGameRef<SomeGame>, KeyboardHandler, CollisionCallbacks {
   String character;
+  int idleAmount;
+  int runAmount;
   Player({
+    this.idleAmount = 11,
+    this.runAmount = 12,
     position,
     this.character = 'Ninja Frog',
   }) : super(position: position);
 
-  final double stepTime = 0.05;
+  final double stepTime = 0.1;
   late final SpriteAnimation idleAnimation;
   late final SpriteAnimation runningAnimation;
   late final SpriteAnimation jumpingAnimation;
   late final SpriteAnimation fallingAnimation;
+  late final SpriteAnimation hitAnimation;
 
-  final double _gravity = 15.8;
+  final double _gravity = 10.8;
   final double _jumpForce = 300;
   final double _terminalVelocity = 300;
   double horizontalMovement = 0;
   double moveSpeed = 100;
   Vector2 velocity = Vector2.zero();
+  Vector2 startPosition = Vector2.zero();
   bool isOnGround = false;
   bool hasJumped = false;
+  bool hasReachedFlag = false;
+  var currentGoalIndex = 0;
+  Goal? goal;
+
+  bool goalsDone = false;
+  double fallTime = 0;
+
+  resetPlayer() {
+    hasReachedFlag = false;
+    currentGoalIndex = 0;
+  }
+
   List<CollisionBlock> collisionBlocks = [];
   CustomHitbox hitbox = CustomHitbox(
     offsetX: 10,
@@ -43,9 +65,13 @@ class Player extends SpriteAnimationGroupComponent
     height: 28,
   );
 
+  double fixedDeltaTime = 1 / 60;
+  double accumulatedTime = 0;
+
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
+    startPosition = Vector2(position.x, position.y);
     // debugMode = true;
     add(
       RectangleHitbox(
@@ -58,11 +84,21 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   void update(double dt) {
-    _updatePlayerState();
-    _updatePlayerMovement(dt);
-    _checkHorizontalCollisions();
-    _applyGravity(dt);
-    _checkVerticalCollisions();
+    _checkIsFalling(dt);
+
+    accumulatedTime += dt;
+
+    while (accumulatedTime >= fixedDeltaTime) {
+      if (current != PlayerState.hit && !hasReachedFlag) {
+        _updatePlayerState();
+        _updatePlayerMovement(fixedDeltaTime);
+        _checkHorizontalCollisions();
+        _applyGravity(fixedDeltaTime);
+        _checkVerticalCollisions();
+      }
+      accumulatedTime -= fixedDeltaTime;
+    }
+
     super.update(dt);
   }
 
@@ -85,19 +121,28 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Fruit) {
-      other.collidedWithPlayer();
+      _collisionWithFruit(other);
+    } else if (other is Saw) {
+      _respawn();
+    } else if (other is Checkpoint) {
+      if (other.current != CheckpointState.noFlag) {
+        hasReachedFlag = true;
+      }
+    } else if (other is Number) {
+      _collisionWithNumber(other);
     }
-
-    super.onCollision(intersectionPoints, other);
+    super.onCollisionStart(intersectionPoints, other);
   }
 
   void _loadAllAnimations() {
-    idleAnimation = _spriteAnimation('Idle', 11);
-    runningAnimation = _spriteAnimation('Run', 12);
+    idleAnimation = _spriteAnimation('Idle', idleAmount);
+    runningAnimation = _spriteAnimation('Run', runAmount);
     jumpingAnimation = _spriteAnimation('Jump', 1);
     fallingAnimation = _spriteAnimation('Fall', 1);
+    hitAnimation = _spriteAnimation('Hit', 7)..loop = false;
 
     // List of all animations
     animations = {
@@ -105,6 +150,7 @@ class Player extends SpriteAnimationGroupComponent
       PlayerState.running: runningAnimation,
       PlayerState.jumping: jumpingAnimation,
       PlayerState.falling: fallingAnimation,
+      PlayerState.hit: hitAnimation,
     };
 
     // Set current animation
@@ -153,6 +199,7 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _playerJump(double dt) {
+    game.playSound('jump.wav');
     velocity.y = -_jumpForce;
     position.y += velocity.y * dt;
     isOnGround = false;
@@ -210,5 +257,52 @@ class Player extends SpriteAnimationGroupComponent
         }
       }
     }
+  }
+
+  void _respawn() async {
+    if (current != PlayerState.hit) {
+      game.playSound('hit.wav');
+
+      current = PlayerState.hit;
+      await Future.delayed(const Duration(milliseconds: 350));
+      scale.x = 1;
+      position = startPosition;
+      current = PlayerState.idle;
+    }
+  }
+
+  void _collisionWithNumber(Number number) {
+    if (trySetNextGoal(number.number.toString())) {
+      number.collidedWithPlayer();
+      var goal = game.level.firstChild<Goal>();
+      goal?.updateGoal('Number${game.level.goalList[currentGoalIndex]} 7x10');
+    }
+  }
+
+  void _collisionWithFruit(Fruit fruit) {
+    if (trySetNextGoal(fruit.fruit)) {
+      fruit.collidedWithPlayer();
+      var goal = game.level.firstChild<Goal>();
+      goal?.updateGoal(game.level.goalList[currentGoalIndex]);
+    }
+  }
+
+  bool trySetNextGoal(String name) {
+    if (name != game.level.goalList[currentGoalIndex]) {
+      return false;
+    }
+
+    if (currentGoalIndex < game.level.goalList.length - 1) {
+      currentGoalIndex++;
+
+      print('new goal - ${game.level.goalList[currentGoalIndex]}');
+    } else {
+      goalsDone = true;
+    }
+    return true;
+  }
+
+  void _checkIsFalling(double dt) {
+    //TODO: need check infinite falling
   }
 }

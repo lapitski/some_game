@@ -6,18 +6,18 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:some_game/components/custom_hitbox.dart';
 import 'package:some_game/components/some_game.dart';
 
-class Fruit extends SpriteAnimationComponent
+class Number extends SpriteAnimationComponent
     with HasGameRef<SomeGame>, CollisionCallbacks {
-  final String fruit;
-  Fruit({this.fruit = 'Apple', position, size})
+  final int number;
+  Number({this.number = 1, position, size})
       : super(position: position, size: size);
 
   final stepTime = 0.05;
   CustomHitbox hitbox = CustomHitbox(
-    offsetX: 10,
-    offsetY: 10,
-    width: 12,
-    height: 12,
+    offsetX: 3,
+    offsetY: 3,
+    width: 7,
+    height: 10,
   );
 
   @override
@@ -30,11 +30,11 @@ class Fruit extends SpriteAnimationComponent
       ),
     );
     animation = SpriteAnimation.fromFrameData(
-        game.images.fromCache('Items/Fruits/$fruit.png'),
+        game.images.fromCache('Items/Fruits/Number$number 7x10.png'),
         SpriteAnimationData.sequenced(
-          amount: 17,
+          amount: 1,
           stepTime: stepTime,
-          textureSize: Vector2.all(32.0),
+          textureSize: Vector2(7.0, 10.0),
         ));
     return super.onLoad();
   }
