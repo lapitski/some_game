@@ -275,7 +275,12 @@ class Player extends SpriteAnimationGroupComponent
     if (trySetNextGoal(number.number.toString())) {
       number.collidedWithPlayer();
       var goal = game.level.firstChild<Goal>();
-      goal?.updateGoal('Number${game.level.goalList[currentGoalIndex]} 7x10');
+      goal?.updateGoal(
+          goalsDone
+              ? 'Checkpoint (Flag Idle)(64x64)'
+              : 'Number${game.level.goalList[currentGoalIndex]} 7x10',
+          updatedPath: goalsDone ? 'Items/Checkpoints/Checkpoint' : null,
+          size: goalsDone ? Vector2.all(64) : null);
     }
   }
 
@@ -283,7 +288,12 @@ class Player extends SpriteAnimationGroupComponent
     if (trySetNextGoal(fruit.fruit)) {
       fruit.collidedWithPlayer();
       var goal = game.level.firstChild<Goal>();
-      goal?.updateGoal(game.level.goalList[currentGoalIndex]);
+      goal?.updateGoal(
+          goalsDone
+              ? 'Checkpoint (Flag Idle)(64x64)'
+              : game.level.goalList[currentGoalIndex],
+          updatedPath: goalsDone ? 'Items/Checkpoints/Checkpoint' : null,
+          size: goalsDone ? Vector2.all(64) : null);
     }
   }
 

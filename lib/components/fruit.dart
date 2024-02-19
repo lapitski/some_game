@@ -22,6 +22,7 @@ class Fruit extends SpriteAnimationComponent
 
   @override
   FutureOr<void> onLoad() {
+    priority =-1;
     add(
       RectangleHitbox(
         position: Vector2(hitbox.offsetX, hitbox.offsetY),

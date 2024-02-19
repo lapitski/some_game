@@ -8,7 +8,7 @@ import 'package:some_game/components/some_game.dart';
 
 class Number extends SpriteAnimationComponent
     with HasGameRef<SomeGame>, CollisionCallbacks {
-  final int number;
+   int number;
   Number({this.number = 1, position, size})
       : super(position: position, size: size);
 
@@ -22,6 +22,7 @@ class Number extends SpriteAnimationComponent
 
   @override
   FutureOr<void> onLoad() {
+    priority=-1;
     add(
       RectangleHitbox(
         position: Vector2(hitbox.offsetX, hitbox.offsetY),

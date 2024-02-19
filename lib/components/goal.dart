@@ -36,7 +36,9 @@ class Goal extends SpriteAnimationComponent
     return super.onLoad();
   }
 
-  void updateGoal(String name) async {
+  void updateGoal(String name, {String? updatedPath, Vector2? size}) async {
+    path = updatedPath ?? path;
+    textureSize = size?? textureSize;
     animation = SpriteAnimation.fromFrameData(
         game.images.fromCache('$path/$name.png'),
         SpriteAnimationData.sequenced(
@@ -44,6 +46,7 @@ class Goal extends SpriteAnimationComponent
           amount: 1,
           stepTime: stepTime,
           textureSize: textureSize,
+          
         ));
 
     await animationTicker?.completed;

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:js';
 
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -28,6 +29,7 @@ class SomeGame extends FlameGame
 
   @override
   FutureOr<void> onLoad() async {
+   
     //load all images into cache
     await images.loadAllImages();
    _createLevelAndCamera();

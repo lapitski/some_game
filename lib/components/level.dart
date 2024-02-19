@@ -23,15 +23,15 @@ class Level extends World with HasGameRef<SomeGame> {
   List<String> goalList = [];
   bool isNumberLevel = false;
   List<int> numbers = [];
+  List<Number> numberComponents = [];
   late Goal goal;
   int secondsElapsed = 0;
   late Timer timer;
 
   @override
   FutureOr<void> onLoad() async {
-    timer = Timer(1,  repeat: true, onTick: () {
+    timer = Timer(1, repeat: true, onTick: () {
       secondsElapsed++;
-      
     });
     level = await TiledComponent.load('$levelName.tmx', Vector2.all(16));
     add(level);
@@ -47,10 +47,9 @@ class Level extends World with HasGameRef<SomeGame> {
   void update(double dt) {
     timer.update(dt);
     var levelTimer = firstChild<LevelTimer>();
-    
+
     levelTimer?.seconds = secondsElapsed;
     super.update(dt);
-    
   }
 
   void _scrollingBackground() {
@@ -90,7 +89,7 @@ class Level extends World with HasGameRef<SomeGame> {
             );
             numbers.add(number.number);
             isNumberLevel = true;
-            add(number);
+            numberComponents.add(number);
             break;
           case 'Goal':
             goal = Goal(
@@ -130,7 +129,7 @@ class Level extends World with HasGameRef<SomeGame> {
           case 'Time':
             add(
               LevelTimer(
-                seconds:  secondsElapsed,
+                seconds: secondsElapsed,
                 position: Vector2(spawnPoint.x, spawnPoint.y),
                 size: Vector2(spawnPoint.width, spawnPoint.height),
               ),
@@ -141,9 +140,14 @@ class Level extends World with HasGameRef<SomeGame> {
       }
       if (isNumberLevel) {
         numbers.sort();
+        numberComponents.shuffle();
+        for (var i = 0; i < numbers.length; i++) {
+          numberComponents[i].number = numbers[i];
+        }
         goalList = numbers.map((e) => e.toString()).toList();
         goal.goal = 'Number${goalList[0]} 7x10';
         goal.textureSize = Vector2(7.0, 10.0);
+        addAll(numberComponents);
       } else {
         goalList.shuffle();
         goal.goal = goalList[0];
