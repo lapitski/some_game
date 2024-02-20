@@ -39,7 +39,8 @@ class _WobblyButtonState extends State<WobblyButton>
       child: RotationTransition(
         turns: _controller.drive(const _MySineTween(0.005)),
         child: NesButton(
-          type: NesButtonType.primary,
+          type: NesButtonType.success,
+
           onPressed: widget.onPressed,
           child: DefaultTextStyle(
             style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),

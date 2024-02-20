@@ -91,10 +91,10 @@
     <property name="value" value="Apple"/>
    </properties>
   </object>
-  <object id="68" type="Text" x="112" y="64" width="80" height="32">
+  <object id="68" name=" - Collect it" type="Text" x="112" y="64" width="80" height="32">
    <text wrap="1" color="#ffffff" valign="center"> - Collect it!</text>
   </object>
-  <object id="69" type="Text" x="464" y="64" width="39" height="32">
+  <object id="69" name="Time" type="Text" x="464" y="64" width="39" height="32">
    <text wrap="1" color="#ffffff" valign="center">Time</text>
   </object>
   <object id="70" type="Time" x="512" y="64" width="64" height="32">
