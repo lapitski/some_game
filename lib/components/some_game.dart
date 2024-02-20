@@ -10,6 +10,12 @@ import 'package:some_game/components/jump_button.dart';
 import 'package:some_game/components/player.dart';
 import 'package:some_game/components/level.dart';
 
+final Map<String, Player> availablePlayers = {
+  'Ninja Frog': Player(character: 'Ninja Frog', idleAmount: 11, runAmount: 12),
+  'Pink Monster':
+      Player(character: 'Pink Monster', idleAmount: 4, runAmount: 6),
+};
+
 class SomeGame extends FlameGame
     with
         HasKeyboardHandlerComponents,
@@ -17,25 +23,30 @@ class SomeGame extends FlameGame
         HasCollisionDetection,
         TapCallbacks {
   late CameraComponent cam;
-  late  Level level;
-  var player = Player(character: 'Ninja Frog', idleAmount: 4, runAmount: 6);
+  late Level level;
+  Player player;
   late JoystickComponent joystick;
-  final showControls = false;
-  final playSounds = true;
+  var jumpButton = JumpButton();
+  var showControls = false;
+  var playSounds = true;
   final volume = 1.0;
   List<String> levels = ['level-01', 'level-04'];
   var currentLevel = 0;
- 
+
+  SomeGame({
+    required this.player,
+    required this.showControls,
+    required this.playSounds,
+    required this.currentLevel,
+  });
 
   @override
   FutureOr<void> onLoad() async {
-   
     //load all images into cache
     await images.loadAllImages();
-   _createLevelAndCamera();
+    _createLevelAndCamera();
     if (showControls) {
-      addJoystick();
-      add(JumpButton());
+      addControls();
     }
 
     return super.onLoad();
@@ -50,7 +61,7 @@ class SomeGame extends FlameGame
     super.update(dt);
   }
 
-  void addJoystick() {
+  void addControls() {
     joystick = JoystickComponent(
       priority: 10,
       knob: SpriteComponent(
@@ -66,6 +77,18 @@ class SomeGame extends FlameGame
       margin: const EdgeInsets.only(left: 32, bottom: 32),
     );
     add(joystick);
+    add(jumpButton);
+  }
+
+  toggleControls(){
+    if (showControls){
+      remove(joystick);
+      remove(jumpButton);
+      showControls = false;
+    } else {
+      addControls();
+      showControls = true;
+    }
   }
 
   void updateJoystick() {
@@ -90,15 +113,15 @@ class SomeGame extends FlameGame
   nextLevel() {
     cam.setRemoved();
     removeWhere((component) => component is Level);
-    if (currentLevel == levels.length-1){
+    if (currentLevel == levels.length - 1) {
       currentLevel = 0;
     } else {
       currentLevel++;
     }
-   _createLevelAndCamera();
+    _createLevelAndCamera();
     player.hasReachedFlag = false;
     if (showControls) {
-      addJoystick();
+      addControls();
     }
   }
 
@@ -107,11 +130,11 @@ class SomeGame extends FlameGame
       FlameAudio.play(file, volume: volume);
     }
   }
-  
+
   void _createLevelAndCamera() {
     player.resetPlayer();
-     
-     level = Level(levelName: levels[currentLevel], player: player);
+
+    level = Level(levelName: levels[currentLevel], player: player);
     cam = CameraComponent.withFixedResolution(
         width: 640, height: 360, world: level);
     cam.viewfinder.anchor = Anchor.topLeft;

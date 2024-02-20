@@ -55,6 +55,7 @@ class Player extends SpriteAnimationGroupComponent
   resetPlayer() {
     hasReachedFlag = false;
     currentGoalIndex = 0;
+    goalsDone = false;
   }
 
   List<CollisionBlock> collisionBlocks = [];

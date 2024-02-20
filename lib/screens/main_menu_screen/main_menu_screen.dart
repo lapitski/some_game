@@ -16,7 +16,8 @@ class MainMenuScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-             
+              Image.asset('assets/images/main_screen_image.jpg'),
+              const SizedBox(height: 10.0),
               Transform.rotate(
                 angle: -0.1,
                 child: ConstrainedBox(
@@ -25,7 +26,6 @@ class MainMenuScreen extends StatelessWidget {
                     'Fruits and numbers',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                     
                       fontSize: 32,
                       height: 1,
                     ),
@@ -40,13 +40,14 @@ class MainMenuScreen extends StatelessWidget {
           children: [
             WobblyButton(
               onPressed: () {
-                GoRouter.of(context).go(AppRoutes.home+AppRoutes.game);
+                GoRouter.of(context).go(AppRoutes.home + AppRoutes.game);
               },
               child: const Text('Play'),
             ),
             _gap,
             WobblyButton(
-              onPressed: () => GoRouter.of(context).push(AppRoutes.home+AppRoutes.setting),
+              onPressed: () =>
+                  GoRouter.of(context).push(AppRoutes.home + AppRoutes.setting),
               child: const Text('Settings'),
             ),
             _gap,
