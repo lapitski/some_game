@@ -22,6 +22,11 @@ class GameScreen extends ConsumerWidget {
           showControls: settings.showControls,
         ),
         initialActiveOverlays: ['Settings'],
+        loadingBuilder: (context) {
+          return Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
+        },
         overlayBuilderMap: {
           'Settings': (context, SomeGame game) {
             return GameScreenSettings(
