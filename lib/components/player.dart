@@ -22,11 +22,13 @@ class Player extends SpriteAnimationGroupComponent
   String character;
   int idleAmount;
   int runAmount;
+  String? id;
   Player({
+    this.id,
     this.idleAmount = 11,
     this.runAmount = 12,
     position,
-    this.character = 'Ninja Frog',
+    this.character = 'Ninja_Frog',
   }) : super(position: position);
 
   final double stepTime = 0.1;
@@ -71,6 +73,7 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   FutureOr<void> onLoad() {
+    print('playerOnLoad');
     _loadAllAnimations();
     startPosition = Vector2(position.x, position.y);
     // debugMode = true;
@@ -160,7 +163,7 @@ class Player extends SpriteAnimationGroupComponent
 
   SpriteAnimation _spriteAnimation(String state, int amount) {
     return SpriteAnimation.fromFrameData(
-      game.images.fromCache('Main Characters/$character/$state (32x32).png'),
+      game.images.fromCache('Main_Characters/$character/${state}_(32x32).png'),
       SpriteAnimationData.sequenced(
         amount: amount,
         stepTime: stepTime,
@@ -278,8 +281,8 @@ class Player extends SpriteAnimationGroupComponent
       var goal = game.level.firstChild<Goal>();
       goal?.updateGoal(
           goalsDone
-              ? 'Checkpoint (Flag Idle)(64x64)'
-              : 'Number${game.level.goalList[currentGoalIndex]} 7x10',
+              ? 'Checkpoint_(Flag Idle)(64x64)'
+              : 'Number${game.level.goalList[currentGoalIndex]}',
           updatedPath: goalsDone ? 'Items/Checkpoints/Checkpoint' : null,
           size: goalsDone ? Vector2.all(64) : null);
     }
@@ -291,7 +294,7 @@ class Player extends SpriteAnimationGroupComponent
       var goal = game.level.firstChild<Goal>();
       goal?.updateGoal(
           goalsDone
-              ? 'Checkpoint (Flag Idle)(64x64)'
+              ? 'Checkpoint_(Flag Idle)(64x64)'
               : game.level.goalList[currentGoalIndex],
           updatedPath: goalsDone ? 'Items/Checkpoints/Checkpoint' : null,
           size: goalsDone ? Vector2.all(64) : null);

@@ -29,7 +29,7 @@ class Checkpoint extends SpriteAnimationGroupComponent
     animations = {
       CheckpointState.noFlag: SpriteAnimation.fromFrameData(
         game.images
-            .fromCache('Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png'),
+            .fromCache('Items/Checkpoints/Checkpoint/Checkpoint_(No Flag).png'),
         SpriteAnimationData.sequenced(
           amount: 1,
           stepTime: 0.1,
@@ -38,7 +38,7 @@ class Checkpoint extends SpriteAnimationGroupComponent
       ),
       CheckpointState.flagOut: SpriteAnimation.fromFrameData(
         game.images.fromCache(
-            'Items/Checkpoints/Checkpoint/Checkpoint (Flag Out) (64x64).png'),
+            'Items/Checkpoints/Checkpoint/Checkpoint_(Flag Out)(64x64).png'),
         SpriteAnimationData.sequenced(
           amount: 26,
           stepTime: 0.03,
@@ -48,7 +48,7 @@ class Checkpoint extends SpriteAnimationGroupComponent
       ),
       CheckpointState.idle: SpriteAnimation.fromFrameData(
         game.images.fromCache(
-            'Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png'),
+            'Items/Checkpoints/Checkpoint/Checkpoint_(Flag Idle)(64x64).png'),
         SpriteAnimationData.sequenced(
           amount: 10,
           stepTime: 0.1,

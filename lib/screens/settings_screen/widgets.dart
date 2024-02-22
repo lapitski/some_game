@@ -15,6 +15,7 @@ class SettingsLine extends StatelessWidget {
       highlightShape: BoxShape.rectangle,
       onTap: onSelected,
       child: Row(
+        
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(

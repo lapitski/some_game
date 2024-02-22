@@ -31,7 +31,7 @@ class Number extends SpriteAnimationComponent
       ),
     );
     animation = SpriteAnimation.fromFrameData(
-        game.images.fromCache('Items/Fruits/Number$number 7x10.png'),
+        game.images.fromCache('Items/Fruits/Number$number.png'),
         SpriteAnimationData.sequenced(
           amount: 1,
           stepTime: stepTime,

@@ -145,7 +145,7 @@ class Level extends World with HasGameRef<SomeGame> {
           numberComponents[i].number = numbers[i];
         }
         goalList = numbers.map((e) => e.toString()).toList();
-        goal.goal = 'Number${goalList[0]} 7x10';
+        goal.goal = 'Number${goalList[0]}';
         goal.textureSize = Vector2(7.0, 10.0);
         addAll(numberComponents);
       } else {

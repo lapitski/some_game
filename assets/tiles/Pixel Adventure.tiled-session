@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Level-03.tmx",
+    "activeFile": "level-04.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,34 +11,34 @@
     "fileStates": {
         "Level-01.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
-            "scale": 2,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 231.5,
-                "y": 110
+                "x": 255,
+                "y": 222.5
             }
         },
         "Level-02.tmx": {
             "scale": 0.75,
             "selectedLayer": -1,
             "viewCenter": {
-                "x": 450.6666666666666,
-                "y": 20
+                "x": 318.6666666666666,
+                "y": 183.33333333333331
             }
         },
         "Level-03.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 163.63636363636374,
-                "y": 1272.727272727273
+                "x": 157.57575757575773,
+                "y": 850
             }
         },
         "Level-04.tmx": {
@@ -54,26 +54,48 @@
             }
         },
         "Pixel Adventure.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level-01.tmx": {
+            "scale": 1.7012228260869564,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319.76998642280967,
+                "y": 183.69139845060297
+            }
+        },
+        "level-04.tmx": {
+            "scale": 1.3042708333333333,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319.7188722945452,
+                "y": 166.75984346298222
+            }
         }
     },
-    "last.imagePath": "C:/Users/Spellthorn/Desktop/pixel_adventure/assets/images/Terrain",
+    "last.imagePath": "C:/apps/some_game/assets/images/Terrain",
     "map.height": 30,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
-        "Level-01.tmx",
         "Level-02.tmx",
-        "Level-03.tmx"
+        "Level-03.tmx",
+        "Pixel Adventure.tsx",
+        "level-01.tmx",
+        "level-04.tmx"
     ],
     "project": "Pixel Adventure.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "Level-01.tmx",
         "Level-02.tmx",
-        "Level-03.tmx"
+        "Level-03.tmx",
+        "Pixel Adventure.tsx",
+        "level-01.tmx",
+        "level-04.tmx",
+        "Level-01.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

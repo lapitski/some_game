@@ -9,9 +9,9 @@ import 'package:some_game/components/player.dart';
 import 'package:some_game/components/level.dart';
 
 final Map<String, Player> availablePlayers = {
-  'Ninja Frog': Player(character: 'Ninja Frog', idleAmount: 11, runAmount: 12),
+  'Ninja Frog': Player(character: 'Ninja_Frog', idleAmount: 11, runAmount: 12),
   'Pink Monster':
-      Player(character: 'Pink Monster', idleAmount: 4, runAmount: 6),
+      Player(character: 'Pink_Monster', idleAmount: 4, runAmount: 6),
 };
 
 class SomeGame extends FlameGame
@@ -22,7 +22,8 @@ class SomeGame extends FlameGame
         TapCallbacks {
   late CameraComponent cam;
   late Level level;
-  Player player;
+  String playerId;
+  late Player player;
   late JoystickComponent joystick;
   var jumpButton = JumpButton();
   var showControls = false;
@@ -32,7 +33,7 @@ class SomeGame extends FlameGame
   var currentLevel = 0;
 
   SomeGame({
-    required this.player,
+    required this.playerId,
     required this.showControls,
     required this.playSounds,
     required this.currentLevel,
@@ -41,12 +42,13 @@ class SomeGame extends FlameGame
   @override
   FutureOr<void> onLoad() async {
     //load all images into cache
+
     await images.loadAllImages();
+
+    _createLevelAndCamera();
     if (showControls) {
       addControls();
     }
-    _createLevelAndCamera();
-
     return super.onLoad();
   }
 
@@ -75,6 +77,7 @@ class SomeGame extends FlameGame
         ),
       ),
       margin: const EdgeInsets.only(left: 32, bottom: 32),
+      children: [],
     );
     cam.viewport.add(joystick);
     cam.viewport.add(jumpButton);
@@ -82,8 +85,8 @@ class SomeGame extends FlameGame
 
   toggleControls() {
     if (showControls) {
-      remove(joystick);
-      remove(jumpButton);
+       cam.viewport.remove(joystick);
+       cam.viewport.remove(jumpButton);
       showControls = false;
     } else {
       addControls();
@@ -111,6 +114,7 @@ class SomeGame extends FlameGame
   }
 
   nextLevel() {
+    player.resetPlayer();
     cam.setRemoved();
     removeWhere((component) => component is Level);
     if (currentLevel == levels.length - 1) {
@@ -132,8 +136,10 @@ class SomeGame extends FlameGame
   }
 
   void _createLevelAndCamera() {
-    player.resetPlayer();
-
+    player = Player(
+        character: availablePlayers[playerId]!.character,
+        idleAmount: availablePlayers[playerId]!.idleAmount,
+        runAmount: availablePlayers[playerId]!.runAmount);
     level = Level(levelName: levels[currentLevel], player: player);
     cam = CameraComponent.withFixedResolution(
         width: 640, height: 360, world: level);
@@ -142,5 +148,16 @@ class SomeGame extends FlameGame
     //   player,
     // );
     addAll([cam, level]);
+  }
+
+  resetGame() {
+    player.resetPlayer();
+    level.removeWhere((component) => component is Player);
+    removeWhere((component) => component is Level);
+  }
+
+  @override
+  void onDispose() {
+    super.onDispose();
   }
 }
