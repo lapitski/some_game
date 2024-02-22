@@ -22,11 +22,15 @@ class Player extends SpriteAnimationGroupComponent
   String character;
   int idleAmount;
   int runAmount;
+   int fallAmount;
+    int jumpAmount;
   String? id;
   Player({
     this.id,
     this.idleAmount = 11,
     this.runAmount = 12,
+    this. fallAmount = 1,
+    this. jumpAmount = 1,
     position,
     this.character = 'Ninja_Frog',
   }) : super(position: position);
@@ -144,8 +148,8 @@ class Player extends SpriteAnimationGroupComponent
   void _loadAllAnimations() {
     idleAnimation = _spriteAnimation('Idle', idleAmount);
     runningAnimation = _spriteAnimation('Run', runAmount);
-    jumpingAnimation = _spriteAnimation('Jump', 1);
-    fallingAnimation = _spriteAnimation('Fall', 1);
+    jumpingAnimation = _spriteAnimation('Jump', jumpAmount);
+    fallingAnimation = _spriteAnimation('Fall', fallAmount);
     hitAnimation = _spriteAnimation('Hit', 7)..loop = false;
 
     // List of all animations
