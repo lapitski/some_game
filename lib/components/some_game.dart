@@ -42,10 +42,10 @@ class SomeGame extends FlameGame
   FutureOr<void> onLoad() async {
     //load all images into cache
     await images.loadAllImages();
-    _createLevelAndCamera();
     if (showControls) {
       addControls();
     }
+    _createLevelAndCamera();
 
     return super.onLoad();
   }
@@ -61,25 +61,27 @@ class SomeGame extends FlameGame
 
   void addControls() {
     joystick = JoystickComponent(
-      priority: 10,
+      priority: 100,
       knob: SpriteComponent(
+        priority: 100,
         sprite: Sprite(
           images.fromCache('HUD/knob.png'),
         ),
       ),
       background: SpriteComponent(
+        priority: 100,
         sprite: Sprite(
           images.fromCache('HUD/joystick.png'),
         ),
       ),
       margin: const EdgeInsets.only(left: 32, bottom: 32),
     );
-    add(joystick);
-    add(jumpButton);
+    cam.viewport.add(joystick);
+    cam.viewport.add(jumpButton);
   }
 
-  toggleControls(){
-    if (showControls){
+  toggleControls() {
+    if (showControls) {
       remove(joystick);
       remove(jumpButton);
       showControls = false;

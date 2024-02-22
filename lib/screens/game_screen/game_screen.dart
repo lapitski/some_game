@@ -13,7 +13,6 @@ class GameScreen extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     var settings = ref.read(settingsProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text('Play')),
       body: GameWidget(
         game: SomeGame(
           currentLevel: 0,
