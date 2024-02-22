@@ -9,9 +9,9 @@ import 'package:some_game/components/player.dart';
 import 'package:some_game/components/level.dart';
 
 final Map<String, Player> availablePlayers = {
-  'Ninja Frog': Player(character: 'Ninja_Frog', idleAmount: 11, runAmount: 12),
+  'Ninja Frog': Player(character: 'Ninja_Frog', idleAmount: 11, runAmount: 12, jumpAmount: 1,fallAmount: 1),
   'Pink Monster':
-      Player(character: 'Pink_Monster', idleAmount: 4, runAmount: 6),
+      Player(character: 'Pink_Monster', idleAmount: 4, runAmount: 6, jumpAmount: 8,fallAmount: 8),
 };
 
 class SomeGame extends FlameGame
@@ -139,7 +139,10 @@ class SomeGame extends FlameGame
     player = Player(
         character: availablePlayers[playerId]!.character,
         idleAmount: availablePlayers[playerId]!.idleAmount,
-        runAmount: availablePlayers[playerId]!.runAmount);
+        runAmount: availablePlayers[playerId]!.runAmount,
+        jumpAmount: availablePlayers[playerId]!.jumpAmount,
+        fallAmount: availablePlayers[playerId]!.fallAmount,
+        );
     level = Level(levelName: levels[currentLevel], player: player);
     cam = CameraComponent.withFixedResolution(
         width: 640, height: 360, world: level);
