@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level-04.tmx",
+    "activeFile": "Pixel Adventure.tsx",
     "expandedProjectPaths": [
         "."
     ],
@@ -25,7 +25,7 @@
             "scale": 0.75,
             "selectedLayer": -1,
             "viewCenter": {
-                "x": 320,
+                "x": 144.66666666666663,
                 "y": 183.33333333333331
             }
         },
@@ -37,8 +37,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 321.21212121212125,
-                "y": 1598.4848484848485
+                "x": -77.27272727272725,
+                "y": 1595.4545454545455
             }
         },
         "Level-04.tmx": {
@@ -61,21 +61,36 @@
             "scale": 1.7012228260869564,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 345.92764156217555,
-                "y": 184.27921092564492
+                "x": 197.21108537656738,
+                "y": 183.1035859755611
             }
         },
         "level-04.tmx": {
+            "expandedObjectLayers": [
+                2,
+                3
+            ],
             "scale": 1.3042708333333333,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 318.9521603705774,
+                "x": 160.62614807124035,
                 "y": 166.75984346298222
+            }
+        },
+        "level-05.tmx": {
+            "scale": 1.7012228260869564,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 198.97452280169313,
+                "y": 184.27921092564492
             }
         }
     },
+    "last.exportedFilePath": "C:/apps/bonfire_example/assets/images/tiled",
     "last.imagePath": "C:/apps/some_game/assets/images/Terrain",
+    "lastUsedTilesetExportFilter": "JSON файлы с наборами тайлов (*.tsj *.json)",
     "map.height": 30,
+    "map.lastUsedExportFilter": "JSON map-файлы (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
@@ -85,7 +100,8 @@
         "Level-03.tmx",
         "Pixel Adventure.tsx",
         "level-01.tmx",
-        "level-04.tmx"
+        "level-04.tmx",
+        "level-05.tmx"
     ],
     "project": "Pixel Adventure.tiled-project",
     "property.type": "string",
@@ -95,6 +111,7 @@
         "Pixel Adventure.tsx",
         "level-01.tmx",
         "level-04.tmx",
+        "level-05.tmx",
         "Level-01.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

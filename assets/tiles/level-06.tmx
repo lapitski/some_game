@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="43">
+ <tileset firstgid="1" source="tiles.tsx"/>
+ <layer id="1" name="background" width="20" height="60">
+  <data encoding="csv">
+30,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,30,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,8,8,8,30,
+30,8,8,8,9,0,0,40,41,42,0,0,0,0,0,29,30,30,30,30,
+30,30,30,30,31,0,0,0,0,0,0,0,0,0,0,51,52,52,52,30,
+30,52,52,52,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,40,41,42,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,6,7,8,8,8,8,8,30,
+31,0,0,0,0,0,0,0,0,0,0,0,28,29,30,30,30,30,30,30,
+31,0,0,0,0,0,0,0,0,0,0,0,50,51,52,52,52,52,52,30,
+31,0,0,0,0,0,0,7,8,9,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,29,30,31,0,0,0,0,0,0,0,0,0,29,
+31,0,0,40,41,42,0,51,52,53,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,7,8,9,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,29,30,31,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,51,52,53,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,7,8,8,9,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,29,30,30,31,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,29,10,11,31,0,0,0,0,0,0,0,0,29,
+30,8,8,8,8,8,8,29,32,33,31,66,66,66,66,0,0,0,0,29,
+30,30,30,30,30,30,30,30,30,30,30,8,8,8,9,0,0,0,0,29,
+30,52,52,52,52,52,52,52,52,52,52,52,52,52,53,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,41,42,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,66,44,44,44,0,29,
+31,0,0,0,40,41,42,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,7,8,9,0,0,29,
+31,0,0,0,0,0,0,0,40,41,42,0,0,0,29,30,31,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,51,52,53,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,40,41,42,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,40,41,42,66,66,66,66,0,0,29,
+31,0,0,0,0,0,0,87,87,87,87,0,0,0,0,0,66,66,66,29,
+31,0,0,0,0,0,0,0,87,87,87,0,0,0,0,0,40,41,42,29,
+31,0,0,0,0,0,0,0,7,8,9,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,29,30,31,0,0,0,0,0,0,0,0,29,
+30,66,66,66,66,66,0,0,51,52,53,0,0,66,66,66,66,66,66,30,
+30,8,8,8,8,9,0,0,0,0,0,0,0,7,8,8,8,8,8,30,
+30,52,52,52,52,53,0,0,0,0,0,0,0,51,52,52,52,52,52,30,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,7,8,8,8,8,8,8,8,8,8,9,0,0,29,
+31,0,0,0,0,0,51,52,52,52,52,52,52,52,52,52,53,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,7,8,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,29,30,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+31,51,52,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
+30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30
+</data>
+ </layer>
+ <objectgroup id="2" name="collisions">
+  <object id="2" x="0" y="0" width="16" height="928"/>
+  <object id="3" x="304" y="-16" width="16" height="944"/>
+  <object id="4" x="16" y="0" width="288" height="16"/>
+  <object id="5" x="0" y="928" width="320" height="48"/>
+  <object id="6" x="16" y="880" width="48" height="48"/>
+  <object id="7" x="96" y="816" width="176" height="32"/>
+  <object id="8" x="208" y="752" width="96" height="32"/>
+  <object id="9" x="16" y="752" width="80" height="32"/>
+  <object id="10" x="128" y="704" width="48" height="48"/>
+  <object id="11" type="Platform" x="160" y="656" width="48" height="16"/>
+  <object id="12" type="Platform" x="64" y="624" width="48" height="16"/>
+  <object id="13" type="Platform" x="128" y="576" width="48" height="16"/>
+  <object id="14" type="Platform" x="64" y="528" width="48" height="16"/>
+  <object id="15" type="Platform" x="256" y="496" width="48" height="16"/>
+  <object id="16" type="Platform" x="160" y="128" width="48" height="16"/>
+  <object id="17" type="Platform" x="112" y="80" width="48" height="16"/>
+  <object id="19" x="16" y="416" width="160" height="48"/>
+  <object id="20" x="112" y="368" width="64" height="48"/>
+  <object id="21" x="48" y="304" width="48" height="48"/>
+  <object id="22" x="112" y="224" width="48" height="48"/>
+  <object id="23" x="208" y="176" width="96" height="48"/>
+  <object id="24" x="240" y="64" width="64" height="48"/>
+  <object id="25" x="16" y="80" width="64" height="48"/>
+  <object id="39" x="176" y="432" width="64" height="32"/>
+  <object id="40" type="Platform" x="48" y="256" width="48" height="16"/>
+  <object id="41" x="224" y="560" width="48" height="48"/>
+  <object id="42" type="Platform" x="256" y="688" width="48" height="16"/>
+ </objectgroup>
+ <objectgroup id="3" name="Spawnpoints">
+  <object id="27" type="Checkpoint" x="256" y="880" width="48" height="48">
+   <properties>
+    <property name="enableValue" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="28" name="1" type="Number" x="16" y="704" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="29" name="2" type="Number" x="256" y="624" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="30" name="3" type="Number" x="64" y="496" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="31" name="4" type="Number" x="16" y="384" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="32" name="5" type="Number" x="64" y="272" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="33" name="6" type="Number" x="32" y="48" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="6"/>
+   </properties>
+  </object>
+  <object id="34" name="7" type="Number" x="256" y="32" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="35" name="8" type="Number" x="288" y="144" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="8"/>
+   </properties>
+  </object>
+  <object id="36" name="9" type="Number" x="144" y="784" width="16" height="16">
+   <properties>
+    <property name="value" type="int" value="9"/>
+   </properties>
+  </object>
+  <object id="37" type="Goal" x="16" y="848" width="32" height="32">
+   <properties>
+    <property name="value" value="Apple"/>
+   </properties>
+  </object>
+  <object id="38" name="Player" type="Player" x="144" y="848" width="32" height="32"/>
+ </objectgroup>
+</map>
