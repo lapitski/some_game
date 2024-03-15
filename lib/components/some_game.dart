@@ -9,9 +9,33 @@ import 'package:some_game/components/player.dart';
 import 'package:some_game/components/level.dart';
 
 final Map<String, Player> availablePlayers = {
-  'Ninja Frog': Player(character: 'Ninja_Frog', idleAmount: 11, runAmount: 12, jumpAmount: 1,fallAmount: 1),
-  'Pink Monster':
-      Player(character: 'Pink_Monster', idleAmount: 4, runAmount: 6, jumpAmount: 8,fallAmount: 8),
+  'Ninja Frog': Player(
+      character: 'Ninja_Frog',
+      idleAmount: 11,
+      runAmount: 12,
+      jumpAmount: 1,
+      fallAmount: 1),
+  'Pink Monster': Player(
+      character: 'Pink_Monster',
+      idleAmount: 4,
+      runAmount: 6,
+      jumpAmount: 8,
+      fallAmount: 8),
+  'Bird': Player(
+    character: 'Bird',
+    idleAmount: 9,
+    runAmount: 11,
+    jumpAmount: 11,
+    fallAmount: 7,
+    width: 48,
+    height: 32,
+  ),
+  'Mole': Player(
+      character: 'Mole',
+      idleAmount: 6,
+      runAmount: 12,
+      jumpAmount: 1,
+      fallAmount: 1),
 };
 
 class SomeGame extends FlameGame
@@ -29,7 +53,7 @@ class SomeGame extends FlameGame
   var showControls = false;
   var playSounds = true;
   final volume = 1.0;
-  List<String> levels = ['level-01', 'level-04'];
+  List<String> levels = ['level-01', 'level-04', 'level-06'];
   var currentLevel = 0;
 
   SomeGame({
@@ -85,8 +109,8 @@ class SomeGame extends FlameGame
 
   toggleControls() {
     if (showControls) {
-       cam.viewport.remove(joystick);
-       cam.viewport.remove(jumpButton);
+      cam.viewport.remove(joystick);
+      cam.viewport.remove(jumpButton);
       showControls = false;
     } else {
       addControls();
@@ -136,20 +160,35 @@ class SomeGame extends FlameGame
   }
 
   void _createLevelAndCamera() {
+    //recreate the player every time 
     player = Player(
-        character: availablePlayers[playerId]!.character,
-        idleAmount: availablePlayers[playerId]!.idleAmount,
-        runAmount: availablePlayers[playerId]!.runAmount,
-        jumpAmount: availablePlayers[playerId]!.jumpAmount,
-        fallAmount: availablePlayers[playerId]!.fallAmount,
-        );
+      character: availablePlayers[playerId]!.character,
+      fallAmount: availablePlayers[playerId]!.fallAmount,
+      idleAmount: availablePlayers[playerId]!.idleAmount,
+      jumpAmount: availablePlayers[playerId]!.jumpAmount,
+      runAmount: availablePlayers[playerId]!.runAmount,
+    );
+
     level = Level(levelName: levels[currentLevel], player: player);
-    cam = CameraComponent.withFixedResolution(
-        width: 640, height: 360, world: level);
-    cam.viewfinder.anchor = Anchor.topLeft;
-    // cam.follow(
-    //   player,
-    // );
+
+    if (currentLevel == 2) {
+      cam = CameraComponent. withFixedResolution(
+        width: 400,
+        height: 360,
+       
+        world: level,
+      );
+      cam.viewfinder.anchor = Anchor.centerLeft;
+      cam. follow(player, verticalOnly: true);
+    } else {
+      cam = CameraComponent.withFixedResolution(
+        width: 640,
+        height: 360,
+        world: level,
+      );
+      cam.viewfinder.anchor = Anchor.topLeft;
+    }
+
     addAll([cam, level]);
   }
 
@@ -157,10 +196,5 @@ class SomeGame extends FlameGame
     player.resetPlayer();
     level.removeWhere((component) => component is Player);
     removeWhere((component) => component is Level);
-  }
-
-  @override
-  void onDispose() {
-    super.onDispose();
   }
 }

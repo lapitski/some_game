@@ -22,15 +22,19 @@ class Player extends SpriteAnimationGroupComponent
   String character;
   int idleAmount;
   int runAmount;
-   int fallAmount;
-    int jumpAmount;
+  int fallAmount;
+  int jumpAmount;
+  double width;
+  double height;
   String? id;
   Player({
     this.id,
     this.idleAmount = 11,
     this.runAmount = 12,
-    this. fallAmount = 1,
-    this. jumpAmount = 1,
+    this.fallAmount = 1,
+    this.jumpAmount = 1,
+    this.width = 32,
+    this.height = 32,
     position,
     this.character = 'Ninja_Frog',
   }) : super(position: position);
@@ -43,8 +47,8 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation hitAnimation;
 
   final double _gravity = 10.8;
-  final double _jumpForce = 300;
-  final double _terminalVelocity = 300;
+   double _jumpForce = 300;
+  final double _terminalVelocity = 1000;
   double horizontalMovement = 0;
   double moveSpeed = 100;
   Vector2 velocity = Vector2.zero();
@@ -65,11 +69,11 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   List<CollisionBlock> collisionBlocks = [];
-  CustomHitbox hitbox = CustomHitbox(
+  late CustomHitbox hitbox = CustomHitbox(
     offsetX: 10,
-    offsetY: 4,
-    width: 14,
-    height: 28,
+    offsetY: 2,
+    width: width-20,
+    height: height-4,
   );
 
   double fixedDeltaTime = 1 / 60;
@@ -77,10 +81,16 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   FutureOr<void> onLoad() {
+     //debugMode = true;
+
+    //bird has less jumpForce
+    if (character == availablePlayers.keys.toList()[2]) {
+      _jumpForce = 150;
+    }
     print('playerOnLoad');
     _loadAllAnimations();
     startPosition = Vector2(position.x, position.y);
-    // debugMode = true;
+    
     add(
       RectangleHitbox(
         position: Vector2(hitbox.offsetX, hitbox.offsetY),
@@ -171,7 +181,7 @@ class Player extends SpriteAnimationGroupComponent
       SpriteAnimationData.sequenced(
         amount: amount,
         stepTime: stepTime,
-        textureSize: Vector2.all(32),
+        textureSize: Vector2(width, height),
       ),
     );
   }
@@ -198,7 +208,10 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _updatePlayerMovement(double dt) {
-    if (hasJumped && isOnGround) _playerJump(dt);
+    //Bird character can jump from air
+    if (hasJumped &&
+        (isOnGround || character == availablePlayers.keys.toList()[2]))
+      _playerJump(dt);
 
     // if (velocity.y > _gravity) isOnGround = false; // optional
 

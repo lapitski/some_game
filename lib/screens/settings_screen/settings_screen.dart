@@ -62,6 +62,24 @@ class SettingsScreen extends ConsumerWidget {
                                 name ?? availablePlayers.keys.first,
                               ),
                     ),
+                    RadioListTile.adaptive(
+                      title: Text(availablePlayers.keys.toList()[2]),
+                      value: availablePlayers.keys.toList()[2],
+                      groupValue: character,
+                      onChanged: (name) =>
+                          ref.read(settingsProvider.notifier).setCharacter(
+                                name ?? availablePlayers.keys.first,
+                              ),
+                    ),
+                     RadioListTile.adaptive(
+                      title: Text(availablePlayers.keys.toList()[3]),
+                      value: availablePlayers.keys.toList()[3],
+                      groupValue: character,
+                      onChanged: (name) =>
+                          ref.read(settingsProvider.notifier).setCharacter(
+                                name ?? availablePlayers.keys.first,
+                              ),
+                    ),
                   ]),
             ),
           ),
