@@ -8,7 +8,7 @@ import 'package:some_game/components/some_game.dart';
 
 class Fruit extends SpriteAnimationComponent
     with HasGameRef<SomeGame>, CollisionCallbacks {
-  final String fruit;
+   String fruit;
   Fruit({this.fruit = 'Apple', position, size})
       : super(position: position, size: size);
 

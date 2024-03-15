@@ -24,6 +24,8 @@ class Level extends World with HasGameRef<SomeGame> {
   bool isNumberLevel = false;
   List<int> numbers = [];
   List<Number> numberComponents = [];
+  List<Fruit> fruitComponents = [];
+
   late Goal goal;
   int secondsElapsed = 0;
   late Timer timer;
@@ -79,7 +81,8 @@ class Level extends World with HasGameRef<SomeGame> {
               size: Vector2(spawnPoint.width, spawnPoint.height),
             );
             goalList.add(spawnPoint.name);
-            add(fruit);
+           
+            fruitComponents.add(fruit);
             break;
           case 'Number':
             final number = Number(
@@ -151,6 +154,11 @@ class Level extends World with HasGameRef<SomeGame> {
       } else {
         goalList.shuffle();
         goal.goal = goalList[0];
+        for (var i = 0; i < goalList.length; i++) {
+          fruitComponents[i].fruit = goalList[i];
+        }
+        
+        addAll(fruitComponents);
       }
 
       add(goal);

@@ -53,7 +53,7 @@ class SomeGame extends FlameGame
   var showControls = false;
   var playSounds = true;
   final volume = 1.0;
-  List<String> levels = ['level-01', 'level-04', 'level-06'];
+  List<String> levels = ['level-01', 'level-04', 'level-06', 'level-07'];
   var currentLevel = 0;
 
   SomeGame({
@@ -160,7 +160,7 @@ class SomeGame extends FlameGame
   }
 
   void _createLevelAndCamera() {
-    //recreate the player every time 
+    //recreate the player every time
     player = Player(
       character: availablePlayers[playerId]!.character,
       fallAmount: availablePlayers[playerId]!.fallAmount,
@@ -172,19 +172,28 @@ class SomeGame extends FlameGame
     level = Level(levelName: levels[currentLevel], player: player);
 
     if (currentLevel == 2) {
-      cam = CameraComponent. withFixedResolution(
+      cam = CameraComponent.withFixedResolution(
         width: 400,
         height: 360,
-       
         world: level,
       );
       cam.viewfinder.anchor = Anchor.centerLeft;
-      cam. follow(player, verticalOnly: true);
+      cam.follow(player, verticalOnly: true);
+    } else if (currentLevel == 3) {
+      cam = CameraComponent.withFixedResolution(
+        width: 640,
+        height: 360,
+        world: level,
+      );
+      cam.viewfinder.anchor = Anchor.center;
+      
+      cam.follow(player,maxSpeed: 100, snap: true);
     } else {
       cam = CameraComponent.withFixedResolution(
         width: 640,
         height: 360,
         world: level,
+
       );
       cam.viewfinder.anchor = Anchor.topLeft;
     }

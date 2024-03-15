@@ -20,7 +20,7 @@ class GameScreen extends ConsumerWidget {
 
         game: SomeGame(
          
-          currentLevel: 2,
+          currentLevel: 3,
           playSounds: settings.playSounds,
           playerId: settings.character,
           showControls: settings.showControls,
